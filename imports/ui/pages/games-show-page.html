@@ -5,14 +5,24 @@
     </header>
 
     <div class="flex-container">
-      <div class="half">
+      <div class="half half-flex">
         {{#each entry in selectedEntries}}
-          <pre class="selected-entry">- {{entry.text}}</pre>
+          <div class="selected-entry">
+            <div class="ranks">
+              <button data-entry-id="{{entry._id}}" data-rank="4" class="change-rank">4</button>
+              <button data-entry-id="{{entry._id}}" data-rank="3" class="change-rank">3</button>
+              <button data-entry-id="{{entry._id}}" data-rank="2" class="change-rank">2</button>
+              <button data-entry-id="{{entry._id}}" data-rank="1" class="change-rank">1</button>
+            </div>
+            <div class="entry-text">
+              {{entry.text}}
+            </div>
+          </div>
         {{/each}}
       </div>
       <div class="half">
         <form class="new-round">
-          <button type="submit">Choose 4</button>
+          <button type="submit">Next round</button>
         </form>
 
         <h4>{{entriesLength}} entries in the bucket</h4>

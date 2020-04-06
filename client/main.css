@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   min-height: 100%;
   background: white;
@@ -108,7 +108,7 @@ header .hide-completed {
   margin-left: 5px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   li {
     padding: 12px 15px;
   }
@@ -129,11 +129,43 @@ header .hide-completed {
 }
 
 .flex-container .half {
-  flex: 1;
+  width: 50%;
+}
+
+/*.half-flex {
+  display: flex;
+}*/
+
+.selected-entry {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #adad85;
+  border-radius: 4px;
+  color: #2e2e1f;
 }
 
 textarea {
   resize: none;
   width: 100%;
   height: 50px;
+}
+
+.ranks {
+  margin-right: -5px;
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.change-rank {
+  float: right;
+  font-size: 8px;
+  margin: 0 1px;
+  color: blue;
+  padding: 0;
+  width: 15px;
+  text-align: center;
+}
+
+.entry-text {
+  white-space: pre-line;
 }
