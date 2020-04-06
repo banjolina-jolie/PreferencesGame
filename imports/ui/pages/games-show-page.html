@@ -1,0 +1,27 @@
+<template name="Games_show_page">
+  <div class="container">
+    <header>
+      <h1>Preferences</h1>
+    </header>
+
+    <div class="flex-container">
+      <div class="half">
+        {{#each entry in selectedEntries}}
+          <pre class="selected-entry">- {{entry.text}}</pre>
+        {{/each}}
+      </div>
+      <div class="half">
+        <form class="new-round">
+          <button type="submit">Choose 4</button>
+        </form>
+
+        <h4>{{tasksLength}} entries in the bucket</h4>
+        <form class="new-task">
+          <textarea id="new-entry-input" type="text" name="text" placeholder="Type to add new entry" maxlength="120"></textarea>
+          <button type="submit">submit new entry</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</template>
