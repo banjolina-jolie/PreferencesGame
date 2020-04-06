@@ -168,4 +168,6 @@ textarea {
 
 .entry-text {
   white-space: pre-line;
+  overflow-wrap: break-word;
+  font-size: 16px;
 }
