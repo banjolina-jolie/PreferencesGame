@@ -1,17 +1,17 @@
 import { Template } from 'meteor/templating';
 
-import { Tasks } from '../../api/tasks.js';
+import { Entries } from '../../api/entries.js';
 
-import './task.html';
+import './entry.html';
 
-Template.task.events({
+Template.entry.events({
   'click .toggle-checked'() {
     // Set the checked property to the opposite of its current value
-    Tasks.update(this._id, {
+    Entries.update(this._id, {
       $set: { checked: ! this.checked },
     });
   },
   'click .delete'() {
-    Tasks.remove(this._id);
+    Entries.remove(this._id);
   },
 });

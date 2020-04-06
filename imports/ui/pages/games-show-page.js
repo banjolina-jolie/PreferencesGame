@@ -1,7 +1,7 @@
 import { Template } from 'meteor/templating';
 
 import { Games } from '../../api/games.js';
-import { Tasks } from '../../api/tasks.js';
+import { Entries } from '../../api/entries.js';
 
 import './games-show-page.html';
 
@@ -27,20 +27,20 @@ Template.Games_show_page.helpers({
   },
   selectedEntries() {
     const gameId = Template.instance().getGameId();
-    return Tasks.find({ gameId, selected: true });
+    return Entries.find({ gameId, selected: true });
   },
-  tasks() {
+  entries() {
     const gameId = Template.instance().getGameId();
-    return Tasks.find({ gameId });
+    return Entries.find({ gameId });
   },
-  tasksLength() {
+  entriesLength() {
     const gameId = Template.instance().getGameId();
-    return Tasks.find({ gameId, selected: null }).count();
+    return Entries.find({ gameId, selected: null }).count();
   },
 });
 
 Template.Games_show_page.events({
-  'submit .new-task'(event) {
+  'submit .new-entry'(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -51,8 +51,8 @@ Template.Games_show_page.events({
 
     const gameId = Template.instance().getGameId();
 
-    // Insert a task into the collection
-    Tasks.insert({
+    // Insert a entry into the collection
+    Entries.insert({
       gameId,
       text,
       createdAt: new Date(), // current time
@@ -68,7 +68,7 @@ Template.Games_show_page.events({
 
     const gameId = Template.instance().getGameId();
 
-    Meteor.call('removeSelectedTasks', gameId);
+    Meteor.call('removeSelectedEntries', gameId);
     Meteor.call('setNewSelected', gameId);
   },
 });

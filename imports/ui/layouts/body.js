@@ -1,23 +1,23 @@
 import { Template } from 'meteor/templating';
 
-import { Tasks } from '../../api/tasks.js';
+import { Entries } from '../../api/entries.js';
 
-import '../components/task.js';
+import '../components/entry.js';
 import './body.html';
 import '../pages/home-page.js';
 import '../pages/games-show-page.js';
 
 // Template.body.helpers({
-//   tasks() {
-//     return Tasks.find({});
+//   entries() {
+//     return Entries.find({});
 //   },
-//   tasksLength() {
-//     return Tasks.find({}).count();
+//   entriesLength() {
+//     return Entries.find({}).count();
 //   },
 // });
 
 // Template.body.events({
-//   'submit .new-task'(event) {
+//   'submit .new-entry'(event) {
 //     // Prevent default browser form submit
 //     event.preventDefault();
 
@@ -25,8 +25,8 @@ import '../pages/games-show-page.js';
 //     const target = event.target;
 //     const text = target.text.value;
 
-//     // Insert a task into the collection
-//     Tasks.insert({
+//     // Insert a entry into the collection
+//     Entries.insert({
 //       text,
 //       createdAt: new Date(), // current time
 //     });

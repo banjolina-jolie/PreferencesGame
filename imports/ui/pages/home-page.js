@@ -10,7 +10,7 @@ Template.Home_page.events({
     // Prevent default browser form submit
     event.preventDefault();
 
-    // Insert a task into the collection
+    // Insert a entry into the collection
     Games.insert({
       createdAt: new Date(), // current time
     }, (err, gameId) => {

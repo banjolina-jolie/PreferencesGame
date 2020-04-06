@@ -1,5 +1,5 @@
 {
-  "name": "simple-todos",
+  "name": "preferences-game",
   "private": true,
   "scripts": {
     "start": "meteor run",

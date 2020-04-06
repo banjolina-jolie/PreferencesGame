@@ -1,26 +1,26 @@
 import { Mongo } from 'meteor/mongo';
 
-export const Tasks = new Mongo.Collection('tasks');
+export const Entries = new Mongo.Collection('entries');
 
-// export function removeSelectedTasks(gameId) {
-//   return Tasks.remove({ gameId, selected: true });
+// export function removeSelectedEntries(gameId) {
+//   return Entries.remove({ gameId, selected: true });
 // }
 
 if (Meteor.isServer) {
   Meteor.startup(function() {
     return Meteor.methods({
-      removeSelectedTasks: function(gameId) {
-        return Tasks.remove({ gameId, selected: true });
+      removeSelectedEntries: function(gameId) {
+        return Entries.remove({ gameId, selected: true });
       },
       setNewSelected: function(gameId) {
-        const entries = Tasks.find({ gameId }).fetch();
+        const entries = Entries.find({ gameId }).fetch();
 
         // Shuffle array
         const shuffled = entries.sort(() => 0.5 - Math.random());
 
         // Get sub-array of first n elements after shuffled
         const selected = shuffled.slice(0, 4).map(x => x._id);
-        Tasks.update({
+        Entries.update({
           gameId,
           _id: { $in: selected },
         },
