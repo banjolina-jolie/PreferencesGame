@@ -2,12 +2,17 @@ import { Template } from 'meteor/templating';
 
 import { Games } from '../../api/games.js';
 import { Entries } from '../../api/entries.js';
+import { Session } from 'meteor/session';
 
 import './games-show-page.html';
 
 Template.Games_show_page.onCreated(function gamesShowPageOnCreated() {
   this.getGameId = () => FlowRouter.getParam('_id');
   this.getCurrentGame = () => Games.findOne({ _id: this.getGameId() });
+
+  Session.set('submitOnReturn', true);
+  // this.getSubmitOnReturn = () => this.submitOnReturn
+  // this.toggleSubmitOnReturn = () => this.submitOnReturn = !this.submitOnReturn
 });
 
 Template.Games_show_page.helpers({
@@ -27,12 +32,25 @@ Template.Games_show_page.helpers({
       game.playerNames = JSON.parse(game.playerNames);
       return game.playerNames.filter(p => !!p);
     }
-  }
+  },
 });
 
 Template.Games_show_page.events({
-  'submit .new-entry'(event) {
-    event.preventDefault();
+  'keydown #new-entry-input'(e) {
+    if (e.keyCode === 13 && Session.get('submitOnReturn')) {
+      e.preventDefault();
+      const text = $('#new-entry-input').val();
+      $('#new-entry-input').val('');
+      const gameId = Template.instance().getGameId();
+      Entries.insert({
+        gameId,
+        text,
+        createdAt: new Date(),
+      });
+    }
+  },
+  'submit .new-entry'(e) {
+    e.preventDefault();
 
     const text = $('#new-entry-input').val();
 
@@ -49,8 +67,8 @@ Template.Games_show_page.events({
     $('#new-entry-input').val('');
   },
 
-  'submit .new-round'(event) {
-    event.preventDefault();
+  'submit .new-round'(e) {
+    e.preventDefault();
 
     const gameId = Template.instance().getGameId();
 
@@ -58,9 +76,9 @@ Template.Games_show_page.events({
     Meteor.call('setNewSelected', gameId);
   },
 
-  'click .change-rank'(event) {
+  'click .change-rank'(e) {
     const gameId = Template.instance().getGameId();
-    const { rank, entryId } = $(event.target).data();
+    const { rank, entryId } = $(e.target).data();
 
     Meteor.call('changeEntryRank', {
       gameId,
@@ -68,5 +86,9 @@ Template.Games_show_page.events({
       rank,
     });
   },
+
+  'change [name="submitOnReturn"]'(e) {
+    Session.set('submitOnReturn', !Session.get('submitOnReturn'));
+  }
 
 });

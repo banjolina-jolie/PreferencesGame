@@ -47,16 +47,6 @@ form {
   position: relative;
 }
 
-.new-entry input {
-  box-sizing: border-box;
-  padding: 10px 0;
-  background: transparent;
-  /*border: none;*/
-  width: 100%;
-  padding-right: 80px;
-  font-size: 1em;
-}
-
 .new-entry input:focus{
   outline: 0;
 }
@@ -138,6 +128,7 @@ header .hide-completed {
 
 .selected-entry {
   margin: 10px;
+  margin-left: 0;
   padding: 10px;
   border: 1px solid #adad85;
   border-radius: 4px;
@@ -170,4 +161,15 @@ textarea {
   white-space: pre-line;
   overflow-wrap: break-word;
   font-size: 16px;
+}
+
+.submit-on-return-container {
+  float: right;
+  width: 200px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.submit-on-return-container input {
+  width:;
 }
