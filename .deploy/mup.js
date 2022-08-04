@@ -3,7 +3,7 @@ const process = require('process');
 module.exports = {
   servers: {
     one: {
-      host: '54.201.138.24',
+      host: '52.88.84.217',
       username: 'admin',
       pem:`${process.env.HOME}/.ssh/dylan-and-george.pem`
     }
